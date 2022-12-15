@@ -1,2 +1,2 @@
 # ExerciciosPython
-General Python Exercises
+General Python Exercises from graduation and web tests
