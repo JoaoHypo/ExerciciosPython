@@ -1,2 +1,2 @@
 # ExerciciosPython
-General Pyhon Exercises
+General Python Exercises
