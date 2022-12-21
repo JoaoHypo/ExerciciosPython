@@ -65,7 +65,6 @@ Entrada inválida
 X
 Entrada inválida
 """
-
 try:
     N = int(input())
 
@@ -77,10 +76,10 @@ try:
         while N!=1:
             if N%2 == 0:
                 N = int(N/2)
-                print(f"{N}\t","#"*N)
+                print(N,'\t','#'*N,sep='') #lembrar que por default , separa com espaço no print
                 #print(f"{str(N).ljust(4,' ')}","#"*N)
             else:
                 N = int(3*N+1)
-                print(f"{N}\t","#"*N)
+                print(N,'\t','#'*N,sep='')
 except:
     print("Entrada inválida")
