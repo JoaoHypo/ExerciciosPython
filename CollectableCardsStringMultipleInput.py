@@ -1,20 +1,17 @@
 #Collectable Cards com input tipo: 12 8
 #Necessitando de umas alterações nos inputs
+# Note: Funções >>>>>>>>>>> código estruturado
+# return é mais conciso como resultado do que um print de um objeto
 
-N = int(input())
+def mdc(a, b): # Abordagem matemática peca na legibilidade porém
+               # Vence em todos outros aspectos técnicos do código
+    if b == 0:
+        return a        
+    else:
+        return mdc(b, a % b)
 
-testctrl = 0
+n = int(input())
 
-result = []
-
-while testctrl < N:
-
-    cartas = input().split()
-    lista = [int(i) for i in cartas]
-    lista.sort()
-    calc = lista[1]%lista[0]
-    if calc==0:
-        print(lista[0],end='\n')
-    else:    
-        print(calc,end='\n')
-    testctrl += 1
+for i in range(n):
+    cartas = [int(i) for i in input().split()]
+    print(mdc(cartas[0],cartas[1]))
