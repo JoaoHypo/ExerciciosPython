@@ -42,6 +42,6 @@ def mdc2(a,b):
 resultado3 = mdc2(27,9)
 print("resultado 3=",resultado3)
 
-# Testando com numeros de resto 0, entendnedo que a primeira função não tem falhas 
+# Testando com numeros de resto 0, entendendo que a primeira função não tem falhas 
 # Não precisa de correções com if's e por isso provavelmente roda mais rápidamente
 # Além de armazenar o ultimo menor divisor pela logica de inversão dos termos.
