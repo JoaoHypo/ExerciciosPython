@@ -79,13 +79,14 @@ def AngryDucks(h,x0,x1,a,v0):
         return (str(round(xf,5))+' -> NUCK')
 
 try:
-    h = float(input())
-    x0,x1 =  (int(i) for i in input().split())
-    ntrys = int(input())
+    while True:
+        h = float(input())
+        x0,x1 =  (int(i) for i in input().split())
+        ntrys = int(input())
 
-    for i in range(ntrys):
+        for i in range(ntrys):
+            a,v0 =  (float(i) for i in input().split())
+            print(AngryDucks(h,x0,x1,a,v0))
 
-        a,v0 =  (float(i) for i in input().split())
-        print(AngryDucks(h,x0,x1,a,v0))
 except:
     pass
