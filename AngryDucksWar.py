@@ -66,7 +66,7 @@ def AngryDucks(h,x0,x1,a,v0):
     pi= 3.14159
     theta = a*pi/180 #conversão pra rad
 
-    #tempo de voo
+    #tempo de voo (tempo subida + descida com h inicial !=0 algebrado)
     t = ((v0*sin(theta)) + sqrt(((v0 * sin(theta))**2) + 2 * g * h)) / g
     
     #range, x max lançamento
