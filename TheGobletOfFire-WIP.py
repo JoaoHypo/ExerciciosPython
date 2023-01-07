@@ -110,5 +110,8 @@ def FireGoblet(n,p):
                 pass # todo!!!
 
 
+            #already solve prime problem, need to figure out how to find the divisors!
+
+
 
 
