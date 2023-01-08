@@ -89,40 +89,53 @@ def IsNumPrime(n):
     if n <= 1:
         return False
 
+    #Checa se o numero realmente é primo, 
+    #não podendo ser divisível por qualquer numero menor
     for i in range(2, n):
         if n % i == 0:
             return False
-
+    #Do contrário, temos um primo!
     return True
 
 
 #Criando a função de checagem dos dívisiveis mútiplos 
-
 def FireGoblet(n,p):
 
+    #Aqui armazenamos os primos
     primes = []
 
+    #Neste Loop for vamos conferir e armazenas os primos no range de p
+    #Nunca adiciona o p, como pedido no exercício justamente pq o intervalo range
+    #tem o final do limite aberto [0,p), podendo ser corrigido dependendo da aplicação
+    #por um range  de p+1, que se livra do primeiro termo 0, que não é primo, e 
+    #adiciona o termo p, ficando com intervalo (1,p)
     for i in range(p):
         test = IsNumPrime(i)
         if test == False:
             continue
         else:
             primes.append(i)
+
     nfac = n
     factors = []
-    while nfac!=1:
-        for i in primes:
-            if nfac % i == 0:
-                fnac = fnac/i
-                factors.append(i)
-            else:
-                continue
-    return factors
 
-n1 = 630
-p = 5
-n = n1*p
+    #Aqui fatoramos o de n somente com os primos menores que p
+    #e os adicionamos a uma lista
+    for i in primes:
+        while nfac % i == 0:
+            nfac = nfac/i
+            factors.append(i)           
 
-print(FireGoblet(n,p))
+    #--------------------- problema no output dos divisores-------------#
+    #O numero total de divisores multiplos dos primos menores que p vai ser
+    #1+len(primos)+len(factors) 
+    return 1+len(primes)+len(factors)
 
-
+try:
+    n1 = int(input())
+    while True:
+        p = int(input())
+        n = n1*p
+        print(FireGoblet(n,p))
+except:
+    pass
