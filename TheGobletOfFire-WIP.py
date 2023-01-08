@@ -82,36 +82,47 @@ Output Samples
 5
 '''
 
+
+#Criando função que checa se numero é primo
 def IsNumPrime(n):
+
     if n <= 1:
         return False
+
     for i in range(2, n):
         if n % i == 0:
             return False
+
     return True
 
-#for i in range(10):
 
-    #print(i,'prime?',IsNumPrime(i))
-
+#Criando a função de checagem dos dívisiveis mútiplos 
 
 def FireGoblet(n,p):
+
     primes = []
+
     for i in range(p):
         test = IsNumPrime(i)
         if test == False:
             continue
         else:
             primes.append(i)
-    
-    while True:
+    nfac = n
+    factors = []
+    while nfac!=1:
         for i in primes:
-            if i:
-                pass # todo!!!
+            if nfac % i == 0:
+                fnac = fnac/i
+                factors.append(i)
+            else:
+                continue
+    return factors
 
+n1 = 630
+p = 5
+n = n1*p
 
-            #already solve prime problem, need to figure out how to find the divisors!
-
-
+print(FireGoblet(n,p))
 
 
