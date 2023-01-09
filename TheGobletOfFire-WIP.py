@@ -139,3 +139,7 @@ try:
         print(FireGoblet(n,p))
 except:
     pass
+
+
+# Todo for index in range(len(list)):. 
+#Use for item in list: or for index, item in enumerate(list):
