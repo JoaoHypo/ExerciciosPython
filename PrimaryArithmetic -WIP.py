@@ -38,6 +38,11 @@ while True:
 
     carrys = 0
 
+    if len(numeros[0]) > len(numeros[1]):
+        newnums = []
+        for i in reversed(numeros):
+            newnums.append(i)
+        numeros = newnums
 
     #todo = selecionar menor numero, é o fator limitante
     for indice,algarismo in reversed(list(enumerate(numeros[0]))):
