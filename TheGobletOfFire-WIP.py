@@ -126,6 +126,32 @@ def FireGoblet(n,p):
             nfac = nfac/i
             factors.append(i)           
 
+    
+    
+    #Aqui criamos um dicionaro para conseguir os fatores e suas potências
+    # do tipo (m**x).(n**y) 
+    NumAndExps = dict()
+    for i in factors:
+        NumAndExps[i] = NumAndExps.get(i,0) + 1
+
+    
+    #Neste bloco vamos gerar os valores com as devidas potências
+    dic2 = dict()
+    for numero,reps in NumAndExps.items():
+        dic2[numero] = dic2.get(numero,[])
+        for exp in range(reps+1):
+            dic2[numero].append(numero**exp)
+            
+    #Todo: chegar valor limite, seria n1*n2*N.... (talvez nao seja necessário...)
+
+    #Multiplicator cada possivel potencia de cada numero por todas outras
+
+    #Preciso num exemplo com 2,3,5 fazer 2*3 , 2*5 , 5*3 e por multimo um 2*3*5
+
+    #Checar repetidos
+    
+    return NumAndExps,dic2
+
     #--------------------- problema no output dos divisores-------------#
     #O numero total de divisores multiplos dos primos menores que p vai ser
     #1+len(primos)+len(factors) 
