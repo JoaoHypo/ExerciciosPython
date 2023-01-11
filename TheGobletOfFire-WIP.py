@@ -100,7 +100,7 @@ def IsNumPrime(n):
 
 #Criando a função de checagem dos dívisiveis mútiplos 
 def FireGoblet(n,p):
-
+    multiplos = []
     #Aqui armazenamos os primos
     primes = []
 
@@ -141,7 +141,8 @@ def FireGoblet(n,p):
         dic2[numero] = dic2.get(numero,[])
         for exp in range(reps+1):
             dic2[numero].append(numero**exp)
-            
+            if numero**exp not in multiplos:
+                multiplos.append(numero**exp)
     #Todo: chegar valor limite, seria n1*n2*N.... (talvez nao seja necessário...)
 
     #Multiplicator cada possivel potencia de cada numero por todas outras
@@ -149,8 +150,17 @@ def FireGoblet(n,p):
     #Preciso num exemplo com 2,3,5 fazer 2*3 , 2*5 , 5*3 e por multimo um 2*3*5
 
     #Checar repetidos
+
+
+    #maybe try?
+    for prime in primes:
+        for i in dic2[prime]:
+            pass
+            #multiplos.append()
+        pass
+
     
-    return NumAndExps,dic2
+    return dic2,multiplos
 
     #--------------------- problema no output dos divisores-------------#
     #O numero total de divisores multiplos dos primos menores que p vai ser
