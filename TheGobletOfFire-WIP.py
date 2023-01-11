@@ -145,33 +145,57 @@ def FireGoblet(n,p):
             if numero**exp not in multiplos:
                 multiplos.append(numero**exp)           
 
-    combinados = []
+    combinadostotal = []
+
+    fatoresmax = []
+
     count = 0
+
     try:
         for primein,prim in enumerate(primes):
+
             count = count +1
-            for i in dic2[primes[primein]]:
+
+            for i in dic2[prim]:
                 for w in dic2.values():
-                    if w != dic2[primes[primein]]:
+                    if w != dic2[prim]:
+                        templist = []
                         for j in w:
                             temp = i*j
                             if temp not in multiplos:
                                 multiplos.append(temp)
-                            if count == 1:                                                                
-                                combinados.append(temp)
+                            if count == 1:
+                                fatoresmax.append(temp)                                                                   
+                                templist.append(temp)
                             elif count == 2:
-                                pass
-                            else:
-                                for indk, k in enumerate(combinados):
-                                    combinados[indk] = (k*temp)
-                                    if combinados[indk] not in multiplos:
-                                        multiplos.append[combinados[indk]]
+                                templist.append(temp)
+                                for indk, k in enumerate(fatoresmax):
+                                    fatoresmax[indk] = (k*j)
+                                    if fatoresmax[indk] not in multiplos:
+                                        multiplos.append[fatoresmax[indk]]
                                        # sigo com problemas para situações de 3 ou mais primos... 
+                        combinadostotal.append(templist)
+                    else:
+                        if count == 2:
+                            continue
+                        else:
+                            for indk, k in enumerate(fatoresmax):
+                                    fatoresmax[indk] = (k*w)
+                                    if fatoresmax[indk] not in multiplos:
+                                        multiplos.append[fatoresmax[indk]]
+                            
+                            for x in combinadostotal:
+                                for y in x:
+                                    temp = y * w
+                                    if temp not in multiplos:
+                                        multiplos.append(temp)
+            del dic2[prim]
+
     except Exception:
         pass
     # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
     # de tamanhos diferentes!!!! MAIOR TO DO!
-    return dic2,multiplos,combinados
+    return dic2,multiplos,combinadostotal
 
 try:
     n1 = int(input())
