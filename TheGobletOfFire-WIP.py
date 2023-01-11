@@ -157,14 +157,16 @@ def FireGoblet(n,p):
                             temp = i*j
                             if temp not in multiplos:
                                 multiplos.append(temp)
-                            if count == 2:                                                                
+                            if count == 1:                                                                
                                 combinados.append(temp)
+                            elif count == 2:
+                                pass
                             else:
                                 for indk, k in enumerate(combinados):
                                     combinados[indk] = (k*temp)
                                     if combinados[indk] not in multiplos:
                                         multiplos.append[combinados[indk]]
-                                       #todo continuar      
+                                       # sigo com problemas para situações de 3 ou mais primos... 
     except Exception:
         pass
     # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
