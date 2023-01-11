@@ -143,41 +143,34 @@ def FireGoblet(n,p):
         for exp in range(reps+1):
             dic2[numero].append(numero**exp)
             if numero**exp not in multiplos:
-                multiplos.append(numero**exp)
-    #Todo: chegar valor limite, seria n1*n2*N.... (talvez nao seja necessário...)
+                multiplos.append(numero**exp)           
 
-    #Multiplicator cada possivel potencia de cada numero por todas outras
-
-    #Preciso num exemplo com 2,3,5 fazer 2*3 , 2*5 , 5*3 e por multimo um 2*3*5
-
-    #Checar repetidos
-
-    combinados = [1]
+    combinados = []
     count = 0
     try:
         for primein,prim in enumerate(primes):
-            count = count + 1
+            count = 0
             for i in dic2[primes[primein]]:
-                for j in dic2[primes[primein+1]]:
-                    temp = i*j
-                    if temp not in multiplos:
-                        multiplos.append(temp)
-                    if temp not in combinados:
-                        combinados.append(temp)
-                        if count >= 3:
-                            for k in combinados:
-                                combinados[k] = (k*temp)
-                                if combinados[k] not in multiplos:
-                                    multiplos.append[k]
+                for w in dic2.values():
+                    if w != dic2[primes[primein]]:
+                        count = count +1
+                        for j in w:
+                            temp = i*j
+                            if temp not in multiplos:
+                                multiplos.append(temp)
+                            if count == 1:                                
+                                combinados.append(temp)
+                            else:
+                                for indk, k in enumerate(combinados):
+                                    combinados[indk] = (k*temp)
+                                    if combinados[indk] not in multiplos:
+                                        multiplos.append[combinados[indk]]
                                              
     except Exception:
         pass
     # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
     # de tamanhos diferentes!!!! MAIOR TO DO!
-    return dic2,multiplos
-
-    #--------------------- problema no output dos divisores-------------#
-    #O numero total de divisores multiplos dos primos menores que p vai ser
+    return dic2,multiplos,combinados
 
 try:
     n1 = int(input())
@@ -187,7 +180,3 @@ try:
         print(FireGoblet(n,p))
 except:
     pass
-
-
-# Todo for index in range(len(list)):. 
-#Use for item in list: or for index, item in enumerate(list):
