@@ -175,10 +175,8 @@ def FireGoblet(n,p):
                                         multiplos.append[fatoresmax[indk]]
                                        # sigo com problemas para situações de 3 ou mais primos... 
                         combinadostotal.append(templist)
-                    else:
-                        if count == 2:
-                            continue
-                        else:
+
+                    elif len(dic2.values()) == 1:
                             for indk, k in enumerate(fatoresmax):
                                     fatoresmax[indk] = (k*w)
                                     if fatoresmax[indk] not in multiplos:
@@ -189,12 +187,16 @@ def FireGoblet(n,p):
                                     temp = y * w
                                     if temp not in multiplos:
                                         multiplos.append(temp)
+                    else:
+                        continue
+
             del dic2[prim]
 
     except Exception:
         pass
-    # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
-    # de tamanhos diferentes!!!! MAIOR TO DO!
+
+
+    #algo se perdendo do caminho, precisa de pouquíssimos polimentos, está muito próximo.
     return dic2,multiplos,combinadostotal
 
 try:
