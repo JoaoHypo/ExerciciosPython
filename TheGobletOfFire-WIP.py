@@ -149,23 +149,22 @@ def FireGoblet(n,p):
     count = 0
     try:
         for primein,prim in enumerate(primes):
-            count = 0
+            count = count +1
             for i in dic2[primes[primein]]:
                 for w in dic2.values():
                     if w != dic2[primes[primein]]:
-                        count = count +1
                         for j in w:
                             temp = i*j
                             if temp not in multiplos:
                                 multiplos.append(temp)
-                            if count == 1:                                
+                            if count == 2:                                                                
                                 combinados.append(temp)
                             else:
                                 for indk, k in enumerate(combinados):
                                     combinados[indk] = (k*temp)
                                     if combinados[indk] not in multiplos:
                                         multiplos.append[combinados[indk]]
-                                             
+                                       #todo continuar      
     except Exception:
         pass
     # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
