@@ -153,7 +153,7 @@ def FireGoblet(n,p):
 
 
     #maybe try?
-    for index,prime in enumarate(primes):
+    for index,prime in enumerate(primes):
         for i in dic2[prime]:
             temp = (dic2[prime])[i]*(dic2[prime + 1])
             multiplos.append()
