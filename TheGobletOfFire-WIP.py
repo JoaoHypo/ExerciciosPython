@@ -100,6 +100,7 @@ def IsNumPrime(n):
 
 #Criando a função de checagem dos dívisiveis mútiplos 
 def FireGoblet(n,p):
+
     multiplos = []
     #Aqui armazenamos os primos
     primes = []
@@ -151,18 +152,28 @@ def FireGoblet(n,p):
 
     #Checar repetidos
 
-
-    #maybe try?
-    for index,prime in enumerate(primes):
-        for i in dic2[prime]:
-            temp = (dic2[prime])[i]*(dic2[prime + 1])
-            multiplos.append()
+    combinados = [1]
+    count = 0
+    try:
+        for primein,prim in enumerate(primes):
+            count = count + 1
+            for i in dic2[primes[primein]]:
+                for j in dic2[primes[primein+1]]:
+                    temp = i*j
+                    if temp not in multiplos:
+                        multiplos.append(temp)
+                    if temp not in combinados:
+                        combinados.append(temp)
+                        if count >= 3:
+                            for k in combinados:
+                                combinados[k] = (k*temp)
+                                if combinados[k] not in multiplos:
+                                    multiplos.append[k]
+                                             
+    except Exception:
         pass
-
     # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
     # de tamanhos diferentes!!!! MAIOR TO DO!
-
-    
     return dic2,multiplos
 
     #--------------------- problema no output dos divisores-------------#
