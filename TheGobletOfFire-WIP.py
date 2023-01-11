@@ -153,19 +153,20 @@ def FireGoblet(n,p):
 
 
     #maybe try?
-    for prime in primes:
+    for index,prime in enumarate(primes):
         for i in dic2[prime]:
-            pass
-            #multiplos.append()
+            temp = (dic2[prime])[i]*(dic2[prime + 1])
+            multiplos.append()
         pass
+
+    # Preciso arrumar um jeito de multiplicar todos os termos uns pelos outros em listas
+    # de tamanhos diferentes!!!! MAIOR TO DO!
 
     
     return dic2,multiplos
 
     #--------------------- problema no output dos divisores-------------#
     #O numero total de divisores multiplos dos primos menores que p vai ser
-    #1+len(primos)+len(factors) 
-    return 1+len(primes)+len(factors)
 
 try:
     n1 = int(input())
