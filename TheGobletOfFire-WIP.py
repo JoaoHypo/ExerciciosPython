@@ -151,7 +151,9 @@ def FireGoblet(n,p):
     limit = len(dic2[primes[0]])
     primesaux = primes
     countlimit = limit * (len(primesaux) - 1)
-    
+
+    #to debug only
+    print (dic2)  
     print(primesaux)
 
     for primein,prim in enumerate(primesaux):
