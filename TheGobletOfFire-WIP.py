@@ -146,58 +146,57 @@ def FireGoblet(n,p):
                 multiplos.append(numero**exp)           
 
     combinadostotal = []
-
     fatoresmax = []
-
     count = 0
-
+    limit = len(dic2[primes[0]])
+    primesaux = primes
+    countlimit = limit * (len(primesaux) - 1)
     
-    for primein,prim in enumerate(primes):
+    print(primesaux)
 
+    for primein,prim in enumerate(primesaux):
+        primes.remove(prim)
         for i in dic2[prim]:
                 for p in primes:
                     if p != prim:
                         try:
-                            for w in dic2[p]:
-                                templist = []
-                                count = count +1
-                                for j in w:
-                                    temp = i*j
-                                    if temp not in multiplos:
-                                        multiplos.append(temp)
-                                    if count == 1:
-                                        fatoresmax.append(temp)                                                                   
-                                        templist.append(temp)
-                                    elif count > 1:
-                                        templist.append(temp)
-                                        for indk, k in enumerate(fatoresmax):
-                                            fatoresmax[indk] = (k*j)
-                                            if fatoresmax[indk] not in multiplos:
-                                                multiplos.append[fatoresmax[indk]]
-                                combinadostotal.append(templist)
-
-                        except Exception:
-                            continue
-###### todo continuar essa loucura...
-
-                if count > 2:
-                    for listafinal in dic2.values():
-                        for num in listafinal:
-                                for indk, k in enumerate(fatoresmax):
-                                        fatoresmax[indk] = (k*num)
+                            count = count + 1
+                            templist = []
+                            for j in dic2[p]:                            
+                                temp = i*j
+                                if temp not in multiplos:
+                                    multiplos.append(temp)                               
+                                if count <= (countlimit):
+                                    fatoresmax.append(temp)                                                                   
+                                    templist.append(temp)
+                                else:
+                                    templist.append(temp)                                    
+                                    for indk, k in enumerate(fatoresmax):
+                                        fatoresmax[indk] = (k*j)
                                         if fatoresmax[indk] not in multiplos:
                                             multiplos.append[fatoresmax[indk]]
-                                
-                                for x in combinadostotal:
-                                    for y in x:
-                                        temp = y * num
-                                        if temp not in multiplos:
-                                            multiplos.append(temp)
-                else:
-                    pass
+                            combinadostotal.append(templist)
+                        except:
+                            continue
+# ---------------------------------------- PARA 2 ESTA FUNCIONANDO, FALTA ARRUMAR ITERAÇÃO COM 3+ PRIMOS.
+                    elif count == limit:
+                        pass
 
-
-
+                    elif len(dic2.values()) == 1:
+                        for listafinal in dic2.values():
+                            for num in listafinal:
+                                    for indk, k in enumerate(fatoresmax):
+                                            fatoresmax[indk] = (k*num)
+                                            if fatoresmax[indk] not in multiplos:
+                                                multiplos.append[fatoresmax[indk]]
+                                    
+                                    for x in combinadostotal:
+                                        for y in x:
+                                            temp = y * num
+                                            if temp not in multiplos:
+                                                multiplos.append(temp)
+                    else:
+                        pass
         del dic2[prim]
 
 
