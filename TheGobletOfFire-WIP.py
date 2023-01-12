@@ -151,49 +151,55 @@ def FireGoblet(n,p):
 
     count = 0
 
-    try:
-        for primein,prim in enumerate(primes):
+    
+    for primein,prim in enumerate(primes):
 
-            count = count +1
-
-            for i in dic2[prim]:
-                for w in dic2.values():
-                    if w != dic2[prim]:
-                        templist = []
-                        for j in w:
-                            temp = i*j
-                            if temp not in multiplos:
-                                multiplos.append(temp)
-                            if count == 1:
-                                fatoresmax.append(temp)                                                                   
-                                templist.append(temp)
-                            elif count == 2:
-                                templist.append(temp)
-                                for indk, k in enumerate(fatoresmax):
-                                    fatoresmax[indk] = (k*j)
-                                    if fatoresmax[indk] not in multiplos:
-                                        multiplos.append[fatoresmax[indk]]
-                                       # sigo com problemas para situações de 3 ou mais primos... 
-                        combinadostotal.append(templist)
-
-                    elif len(dic2.values()) == 1:
-                            for indk, k in enumerate(fatoresmax):
-                                    fatoresmax[indk] = (k*w)
-                                    if fatoresmax[indk] not in multiplos:
-                                        multiplos.append[fatoresmax[indk]]
-                            
-                            for x in combinadostotal:
-                                for y in x:
-                                    temp = y * w
+        for i in dic2[prim]:
+                for p in primes:
+                    if p != prim:
+                        try:
+                            for w in dic2[p]:
+                                templist = []
+                                count = count +1
+                                for j in w:
+                                    temp = i*j
                                     if temp not in multiplos:
                                         multiplos.append(temp)
-                    else:
-                        continue
+                                    if count == 1:
+                                        fatoresmax.append(temp)                                                                   
+                                        templist.append(temp)
+                                    elif count > 1:
+                                        templist.append(temp)
+                                        for indk, k in enumerate(fatoresmax):
+                                            fatoresmax[indk] = (k*j)
+                                            if fatoresmax[indk] not in multiplos:
+                                                multiplos.append[fatoresmax[indk]]
+                                combinadostotal.append(templist)
 
-            del dic2[prim]
+                        except Exception:
+                            continue
+###### todo continuar essa loucura...
 
-    except Exception:
-        pass
+                if count > 2:
+                    for listafinal in dic2.values():
+                        for num in listafinal:
+                                for indk, k in enumerate(fatoresmax):
+                                        fatoresmax[indk] = (k*num)
+                                        if fatoresmax[indk] not in multiplos:
+                                            multiplos.append[fatoresmax[indk]]
+                                
+                                for x in combinadostotal:
+                                    for y in x:
+                                        temp = y * num
+                                        if temp not in multiplos:
+                                            multiplos.append(temp)
+                else:
+                    pass
+
+
+
+        del dic2[prim]
+
 
 
     #algo se perdendo do caminho, precisa de pouquíssimos polimentos, está muito próximo.
