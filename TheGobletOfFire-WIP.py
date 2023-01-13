@@ -105,67 +105,84 @@ def FireGoblet(n,p):
     #Aqui armazenamos os primos
     primes = []
 
-    #Neste Loop for vamos conferir e armazenas os primos no range de p
-    #Nunca adiciona o p, como pedido no exercício justamente pq o intervalo range
-    #tem o final do limite aberto [0,p), podendo ser corrigido dependendo da aplicação
-    #por um range  de p+1, que se livra do primeiro termo 0, que não é primo, e 
-    #adiciona o termo p, ficando com intervalo (1,p)
-    for i in range(p):
-        test = IsNumPrime(i)
-        if test == False:
-            continue
-        else:
-            primes.append(i)
+    if p >= 3:
+        #Neste Loop for vamos conferir e armazenas os primos no range de p
+        #Nunca adiciona o p, como pedido no exercício justamente pq o intervalo range
+        #tem o final do limite aberto [0,p), podendo ser corrigido dependendo da aplicação
+        #por um range  de p+1, que se livra do primeiro termo 0, que não é primo, e 
+        #adiciona o termo p, ficando com intervalo (1,p)
+        for i in range(p):
+            test = IsNumPrime(i)
+            if test == False:
+                continue
+            else:
+                primes.append(i)
 
-    nfac = n
-    factors = []
+        nfac = n
+        factors = []
 
-    #Aqui fatoramos o de n somente com os primos menores que p
-    #e os adicionamos a uma lista
-    for i in primes:
-        while nfac % i == 0:
-            nfac = nfac/i
-            factors.append(i)           
+        #Aqui fatoramos o de n somente com os primos menores que p
+        #e os adicionamos a uma lista
+        for i in primes:
+            while nfac % i == 0:
+                nfac = nfac/i
+                factors.append(i)           
 
-    
-    
-    #Aqui criamos um dicionaro para conseguir os fatores e suas potências
-    # do tipo (m**x).(n**y) 
-    NumAndExps = dict()
-    for i in factors:
-        NumAndExps[i] = NumAndExps.get(i,0) + 1
-
-    
-    #Neste bloco vamos gerar os valores com as devidas potências
-    dic2 = dict()
-    for numero,reps in NumAndExps.items():
-        dic2[numero] = dic2.get(numero,[])
-        for exp in range(reps+1):
-            dic2[numero].append(numero**exp)
-            if numero**exp not in multiplos:
-                multiplos.append(numero**exp)           
-
-    combinadostotal = dict
-    primesaux = [x for x in primes]
-
-    for primein,prim in enumerate(primesaux):
         
-        if len(primes) > 1:
-            primes = [ x for x in primesaux if x != prim ] # primes.remove(prim) was crashing the code??
-            for i in dic2[prim]:              
-                for p in primes:
-                    templist = []
+        
+        #Aqui criamos um dicionaro para conseguir os fatores e suas potências
+        # do tipo (m**x).(n**y) 
+        NumAndExps = dict()
+        for i in factors:
+            NumAndExps[i] = NumAndExps.get(i,0) + 1
 
-                    for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
-                        temp = i*j          # e junto conferir o countlimit
-                        if temp not in multiplos:
-                            multiplos.append(temp)                                                   
-                        templist.append(temp)
+        
+        #Neste bloco vamos gerar os valores com as devidas potências
+        dic2 = dict()
+        for numero,reps in NumAndExps.items():
+            dic2[numero] = dic2.get(numero,[])
+            for exp in range(reps+1):
+                dic2[numero].append(numero**exp)
+                if numero**exp not in multiplos:
+                    multiplos.append(numero**exp)           
 
-                    termos = str(prim)+'**'+str(i)+'*'+str(p)               
-                    combinadostotal[termos] = combinadostotal.get(termos,templist)     
+        combinadostotal = dict()
+        primesaux = [x for x in primes]
 
-                if primein > 1:                                         
+        for primein,prim in enumerate(primesaux):
+            
+            if len(primes) > 1:
+                primes = [ x for x in primes if x != prim ] # primes.remove(prim) was crashing the code??
+                for i in dic2[prim]:              
+                    for p in primes:
+                        templist = []
+
+                        for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
+                            temp = i*j          # e junto conferir o countlimit
+                            if temp not in multiplos:
+                                multiplos.append(temp)                                                   
+                            templist.append(temp)
+
+                        termos = str(prim)+'**'+str((i-1)*'i')+'*'+str(p)               
+                        combinadostotal[termos] = templist
+                    if primein > 1:                                         
+                        for key,combis in combinadostotal.items():
+                            if str(prim) not in key:
+                                combtemplist = []
+                                for val in combis:
+                                    temp2 = val*i
+                                    combtemplist.append(temp2)
+                                    if temp2 not in multiplos:
+                                        multiplos.append(temp2)
+                                termotemp = key+'*'+str(prim)+'**'+ str((i-1)*'i')
+                                combinadostotal[termotemp] = combtemplist
+                del dic2[prim]        
+
+            elif primein <= 1:
+                pass
+            
+            else:
+                for i in dic2[prim]:
                     for key,combis in combinadostotal.items():
                         if str(prim) not in key:
                             combtemplist = []
@@ -174,23 +191,11 @@ def FireGoblet(n,p):
                                 combtemplist.append(temp2)
                                 if temp2 not in multiplos:
                                     multiplos.append(temp2)
-                            termotemp = key+'*'+str(prim)+'**'+str(i)
-                            combinadostotal[termotemp] = combinadostotal.get(termotemp,combtemplist)
-            del dic2[prim]        
 
-        for i in dic2[prim]:
-            for key,combis in combinadostotal.items():
-                if str(prim) not in key:
-                    combtemplist = []
-                    for val in combis:
-                        temp2 = val*i
-                        combtemplist.append(temp2)
-                        if temp2 not in multiplos:
-                            multiplos.append(temp2)
-                    termotemp = key+'*'+str(prim)+'**'+str(i)
-                    combinadostotal[termotemp] = combinadostotal.get(termotemp,combtemplist)
+    else:
+        multiplos.append(1)
 
-    return dic2 , multiplos , combinadostotal,
+    return len(multiplos)
 
 try:
     n1 = int(input())
