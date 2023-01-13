@@ -175,8 +175,10 @@ def FireGoblet(n,p):
                                 fatoresmax.append(temp)                                                                   
                                 templist.append(temp)
 
-                            if prim:#tothink
-                                pass
+                            if prim <= 1:
+                                templist.append(temp)
+                                
+
                             #need a LOT of polishment in the iteration process, prob 
                             # with more dicts it will help!
                             else:
