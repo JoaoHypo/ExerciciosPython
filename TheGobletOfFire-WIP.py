@@ -151,6 +151,7 @@ def FireGoblet(n,p):
     limit = len(dic2[primes[0]])
     primesaux = primes
     countlimit = limit * (len(primesaux) - 1)
+    casecounter = len(primes) 
 
     #to debug only
     print (dic2)  
@@ -181,30 +182,28 @@ def FireGoblet(n,p):
                         except:
                             continue
 # ---------------------------------------- PARA 2 ESTA FUNCIONANDO, FALTA ARRUMAR ITERAÇÃO COM 3+ PRIMOS.
-                    elif count == limit:
+                    elif casecounter <= 2:
                         pass
 
-                    elif len(dic2.values()) == 1:
-                        for listafinal in dic2.values():
-                            for num in listafinal:
-                                    for indk, k in enumerate(fatoresmax):
-                                            fatoresmax[indk] = (k*num)
-                                            if fatoresmax[indk] not in multiplos:
-                                                multiplos.append[fatoresmax[indk]]
-                                    
-                                    for x in combinadostotal:
-                                        for y in x:
-                                            temp = y * num
-                                            if temp not in multiplos:
-                                                multiplos.append(temp)
                     else:
-                        pass
+                        for num in dic2[prim]:
+                            for indk, k in enumerate(fatoresmax):
+                                    fatoresmax[indk] = (k*num)
+                                    if fatoresmax[indk] not in multiplos:
+                                        multiplos.append(fatoresmax[indk])
+                            
+                            for x in combinadostotal:
+                                for y in x:
+                                    temp = y * num
+                                    if temp not in multiplos:
+                                        multiplos.append(temp)
+
         del dic2[prim]
 
 
 
     #algo se perdendo do caminho, precisa de pouquíssimos polimentos, está muito próximo.
-    return dic2,multiplos,combinadostotal
+    return dic2,multiplos,combinadostotal, fatoresmax
 
 try:
     n1 = int(input())
