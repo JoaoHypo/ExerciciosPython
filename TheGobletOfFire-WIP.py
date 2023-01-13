@@ -160,56 +160,56 @@ def FireGoblet(n,p):
     for primein,prim in enumerate(primesaux):
         primes.remove(prim)
         for i in dic2[prim]:
-                for p in primes:
-                    if p != prim:
-                        try:
-                            count = count + 1
-                            templist = []
-                            for j in dic2[p]:                            
-                                temp = i*j
-                                if temp not in multiplos:
-                                    multiplos.append(temp)                               
-                                if count <= (countlimit):
-                                    fatoresmax.append(temp)                                                                   
-                                    templist.append(temp)
-                                else:
-                                    templist.append(temp)                                    
-                                    for indk, k in enumerate(fatoresmax):
-                                        fatoresmax[indk] = (k*j)
-                                        if fatoresmax[indk] not in multiplos:
-                                            multiplos.append[fatoresmax[indk]]
-                            combinadostotal.append(templist)
-                        except:
-                            continue
-# ---------------------------------------- PARA 2 ESTA FUNCIONANDO, FALTA ARRUMAR ITERAÇÃO COM 3+ PRIMOS.
-                    elif casecounter <= 2:
-                        pass
-
-                    else:
-                        for num in dic2[prim]:
-                            for indk, k in enumerate(fatoresmax):
-                                    fatoresmax[indk] = (k*num)
+            for p in primes:
+                if p != prim:
+                    try:
+                        count = count + 1
+                        templist = []
+                        for j in dic2[p]:                            
+                            temp = i*j
+                            if temp not in multiplos:
+                                multiplos.append(temp)                               
+                            if count <= (countlimit):
+                                fatoresmax.append(temp)                                                                   
+                                templist.append(temp)
+                            else:
+                                templist.append(temp)                                    
+                                for indk, k in enumerate(fatoresmax):
+                                    fatoresmax[indk] = (k*j)
                                     if fatoresmax[indk] not in multiplos:
-                                        multiplos.append(fatoresmax[indk])
-                            
-                            for x in combinadostotal:
-                                for y in x:
-                                    temp = y * num
-                                    if temp not in multiplos:
-                                        multiplos.append(temp)
+                                        multiplos.append[fatoresmax[indk]]
+                        combinadostotal.append(templist)
+                    except:
+                        continue
+
+            if casecounter <= 2:
+                pass
+
+            else:                
+                for indk, k in enumerate(fatoresmax):
+                        fatoresmax[indk] = (k*i)
+                        if fatoresmax[indk] not in multiplos:
+                            multiplos.append(fatoresmax[indk])
+                
+                for x in combinadostotal:
+                    for y in x:
+                        temp = y * i
+                        if temp not in multiplos:
+                            multiplos.append(temp)
 
         del dic2[prim]
+        
+        #GRANDE AVANÇO TINHA PROBLEMA NO INPUT, AGORA SO FALTA DEBUGAR O EXEMPLO COM CALMA!
+        #ARRUMAR OS FATORES MAX!!! DALE!!
 
-
-
-    #algo se perdendo do caminho, precisa de pouquíssimos polimentos, está muito próximo.
-    return dic2,multiplos,combinadostotal, fatoresmax
+    return dic2 , multiplos , combinadostotal, fatoresmax
 
 try:
     n1 = int(input())
+    n = n1
     while True:
         p = int(input())
-        n = n1*p
+        n = n*p
         print(FireGoblet(n,p))
 except:
     pass
