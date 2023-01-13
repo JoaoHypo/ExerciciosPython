@@ -146,22 +146,14 @@ def FireGoblet(n,p):
                 multiplos.append(numero**exp)           
 
     combinadostotal = dict
-    count = 0
-    limit = len(dic2[primes[0]])
     primesaux = [x for x in primes]
-    #primecounter = 0 use the index on the main interation instead
-
-    #to debug only
-    print (dic2)  
-    print(primesaux)
 
     for primein,prim in enumerate(primesaux):
         
         if len(primes) > 1:
             primes = [ x for x in primesaux if x != prim ] # primes.remove(prim) was crashing the code??
-            for i in dic2[prim]:                
+            for i in dic2[prim]:              
                 for p in primes:
-                    count = count + 1
                     templist = []
 
                     for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
@@ -173,30 +165,32 @@ def FireGoblet(n,p):
                     termos = str(prim)+'**'+str(i)+'*'+str(p)               
                     combinadostotal[termos] = combinadostotal.get(termos,templist)     
 
-                if primein > 1:            
-                            templist.append(temp)                                    
-                            for key,combis in combinadostotal.items():
-                                if str(prim) not in key:
-                                    combtemplist = []
-                                    i # CONTINUE HERE!!!
-   
+                if primein > 1:                                         
+                    for key,combis in combinadostotal.items():
+                        if str(prim) not in key:
+                            combtemplist = []
+                            for val in combis:
+                                temp2 = val*i
+                                combtemplist.append(temp2)
+                                if temp2 not in multiplos:
+                                    multiplos.append(temp2)
+                            termotemp = key+'*'+str(prim)+'**'+str(i)
+                            combinadostotal[termotemp] = combinadostotal.get(termotemp,combtemplist)
             del dic2[prim]        
 
         for i in dic2[prim]:
+            for key,combis in combinadostotal.items():
+                if str(prim) not in key:
+                    combtemplist = []
+                    for val in combis:
+                        temp2 = val*i
+                        combtemplist.append(temp2)
+                        if temp2 not in multiplos:
+                            multiplos.append(temp2)
+                    termotemp = key+'*'+str(prim)+'**'+str(i)
+                    combinadostotal[termotemp] = combinadostotal.get(termotemp,combtemplist)
 
-            if primein <= 1:
-                pass
-
-            else:                
-                #copy from above!
-                
-                for x in combinadostotal:
-                    for y in x:
-                        temp = y * i
-                        if temp not in multiplos:
-                            multiplos.append(temp)
-
-    return dic2 , multiplos , combinadostotal, fatoresmax
+    return dic2 , multiplos , combinadostotal,
 
 try:
     n1 = int(input())
