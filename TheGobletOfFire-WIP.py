@@ -177,14 +177,17 @@ def FireGoblet(n,p):
 
                             if prim:#tothink
                                 pass
-
+                            #need a LOT of polishment in the iteration process, prob 
+                            # with more dicts it will help!
                             else:
                                 templist.append(temp)                                    
                                 for indk, k in enumerate(fatoresmax):
                                     fatoresmax[indk] = (k*j)
                                     if fatoresmax[indk] not in multiplos:
                                         multiplos.append[fatoresmax[indk]]
-                        combinadostotal.append(templist)
+
+                        termos = str(i)+'*'+str(p)               
+                        combinadostotal[termos] = combinadostotal.get(termos,fatoresmax)
                 except:
                     continue
             del dic2[prim]        
