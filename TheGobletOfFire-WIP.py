@@ -149,7 +149,7 @@ def FireGoblet(n,p):
     fatoresmax = []
     count = 0
     limit = len(dic2[primes[0]])
-    primesaux = primes
+    primesaux = [x for x in primes]
     countlimit = limit * (len(primesaux) - 1)
     casecounter = len(primes) 
 
@@ -158,18 +158,19 @@ def FireGoblet(n,p):
     print(primesaux)
 
     for primein,prim in enumerate(primesaux):
-        primes.remove(prim)
+        if len(primes) > 1:
+            primes = [ x for x in primesaux if x != prim ] # primes.remove(prim) was crashing the code??
         for i in dic2[prim]:
-            for p in primes:
+            for p in primes: # problema aq agora. 2 iterando 3 e 5 misturado
                 if p != prim:
                     try:
                         count = count + 1
                         templist = []
-                        for j in dic2[p]:                            
-                            temp = i*j
+                        for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
+                            temp = i*j          # e junto conferir o countlimit
                             if temp not in multiplos:
                                 multiplos.append(temp)                               
-                            if count <= (countlimit):
+                            if count <= (countlimit): #conferir esse limite
                                 fatoresmax.append(temp)                                                                   
                                 templist.append(temp)
                             else:
