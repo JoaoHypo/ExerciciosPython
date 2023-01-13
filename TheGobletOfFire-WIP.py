@@ -98,10 +98,12 @@ def IsNumPrime(n):
     return True
 
 
-#Criando a função de checagem dos dívisiveis mútiplos 
+#Criando a função de checagem dos dívisiveis mútiplos com limite de primos
 def FireGoblet(n,p):
 
+    #Aqui ficarão os multiplos
     multiplos = []
+
     #Aqui armazenamos os primos
     primes = []
 
@@ -138,6 +140,7 @@ def FireGoblet(n,p):
 
         
         #Neste bloco vamos gerar os valores com as devidas potências
+        #E armazena-los em um dicionário
         dic2 = dict()
         for numero,reps in NumAndExps.items():
             dic2[numero] = dic2.get(numero,[])
@@ -146,14 +149,21 @@ def FireGoblet(n,p):
                 if numero**exp not in multiplos:
                     multiplos.append(numero**exp)           
 
+        #Este será um dicionário que armazenará todas as combinações do tipo m^x * n^y * p...
         combinadostotal = dict()
+
+        #Uma copia dos primos para usar nas iterações
         primesaux = [x for x in primes]
 
+        #Agora vamos puxar os primos, seus indices e iterar suas potencias baseada nos fatores encontrados
         for primein,prim in enumerate(primesaux):
             
+            #Ao longo da iteração vamos remover o primo do primeiro for loop, então se só sobrar um, estamos 
+            #lidando com o ultimo primo a ser iterado
             if len(primes) > 1:
-                primes = [ x for x in primes if x != prim ] # primes.remove(prim) was crashing the code??
-                for i in dic2[prim]:              
+
+                primes = [ x for x in primes if x != prim ] #atualizando os primos, removendo o primo do for principal
+                for poten,i in enumerate(dic2[prim]):              
                     for p in primes:
                         templist = []
 
@@ -163,7 +173,7 @@ def FireGoblet(n,p):
                                 multiplos.append(temp)                                                   
                             templist.append(temp)
 
-                        termos = str(prim)+'**'+str((i-1)*'i')+'*'+str(p)               
+                        termos = str(prim)+'**'+str((poten)*'i')+'*'+str(p)               
                         combinadostotal[termos] = templist
                     if primein > 1:                                         
                         for key,combis in combinadostotal.items():
@@ -174,7 +184,7 @@ def FireGoblet(n,p):
                                     combtemplist.append(temp2)
                                     if temp2 not in multiplos:
                                         multiplos.append(temp2)
-                                termotemp = key+'*'+str(prim)+'**'+ str((i-1)*'i')
+                                termotemp = key+'*'+str(prim)+'**'+ str((poten)*'i')
                                 combinadostotal[termotemp] = combtemplist
                 del dic2[prim]        
 
