@@ -145,34 +145,39 @@ def FireGoblet(n,p):
             if numero**exp not in multiplos:
                 multiplos.append(numero**exp)           
 
-    combinadostotal = []
+    combinadostotal = dict
     fatoresmax = []
     count = 0
     limit = len(dic2[primes[0]])
     primesaux = [x for x in primes]
     countlimit = limit * (len(primesaux) - 1)
     casecounter = len(primes) 
+    #primecounter = 0 use the index on the main interation instead
 
     #to debug only
     print (dic2)  
     print(primesaux)
 
     for primein,prim in enumerate(primesaux):
+        
         if len(primes) > 1:
             primes = [ x for x in primesaux if x != prim ] # primes.remove(prim) was crashing the code??
-        for i in dic2[prim]:
-            for p in primes: # problema aq agora. 2 iterando 3 e 5 misturado
-                if p != prim:
-                    try:
+            for i in dic2[prim]:
+                try:
+                    for p in primes:
                         count = count + 1
                         templist = []
                         for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
                             temp = i*j          # e junto conferir o countlimit
                             if temp not in multiplos:
                                 multiplos.append(temp)                               
-                            if count <= (countlimit): #conferir esse limite
+                            if count <= (limit): #conferir esse limite
                                 fatoresmax.append(temp)                                                                   
                                 templist.append(temp)
+
+                            if prim:#tothink
+                                pass
+
                             else:
                                 templist.append(temp)                                    
                                 for indk, k in enumerate(fatoresmax):
@@ -180,8 +185,11 @@ def FireGoblet(n,p):
                                     if fatoresmax[indk] not in multiplos:
                                         multiplos.append[fatoresmax[indk]]
                         combinadostotal.append(templist)
-                    except:
-                        continue
+                except:
+                    continue
+            del dic2[prim]        
+
+        for i in dic2[prim]:
 
             if casecounter <= 2:
                 pass
@@ -197,11 +205,6 @@ def FireGoblet(n,p):
                         temp = y * i
                         if temp not in multiplos:
                             multiplos.append(temp)
-
-        del dic2[prim]
-        
-        #GRANDE AVANÇO TINHA PROBLEMA NO INPUT, AGORA SO FALTA DEBUGAR O EXEMPLO COM CALMA!
-        #ARRUMAR OS FATORES MAX!!! DALE!!
 
     return dic2 , multiplos , combinadostotal, fatoresmax
 
