@@ -146,12 +146,9 @@ def FireGoblet(n,p):
                 multiplos.append(numero**exp)           
 
     combinadostotal = dict
-    fatoresmax = []
     count = 0
     limit = len(dic2[primes[0]])
     primesaux = [x for x in primes]
-    countlimit = limit * (len(primesaux) - 1)
-    casecounter = len(primes) 
     #primecounter = 0 use the index on the main interation instead
 
     #to debug only
@@ -162,48 +159,36 @@ def FireGoblet(n,p):
         
         if len(primes) > 1:
             primes = [ x for x in primesaux if x != prim ] # primes.remove(prim) was crashing the code??
-            for i in dic2[prim]:
-                try:
-                    for p in primes:
-                        count = count + 1
-                        templist = []
-                        for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
-                            temp = i*j          # e junto conferir o countlimit
-                            if temp not in multiplos:
-                                multiplos.append(temp)                               
-                            if count <= (limit): #conferir esse limite
-                                fatoresmax.append(temp)                                                                   
-                                templist.append(temp)
+            for i in dic2[prim]:                
+                for p in primes:
+                    count = count + 1
+                    templist = []
 
-                            if prim <= 1:
-                                templist.append(temp)
-                                
+                    for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
+                        temp = i*j          # e junto conferir o countlimit
+                        if temp not in multiplos:
+                            multiplos.append(temp)                                                   
+                        templist.append(temp)
 
-                            #need a LOT of polishment in the iteration process, prob 
-                            # with more dicts it will help!
-                            else:
-                                templist.append(temp)                                    
-                                for indk, k in enumerate(fatoresmax):
-                                    fatoresmax[indk] = (k*j)
-                                    if fatoresmax[indk] not in multiplos:
-                                        multiplos.append[fatoresmax[indk]]
+                    termos = str(prim)+'**'+str(i)+'*'+str(p)               
+                    combinadostotal[termos] = combinadostotal.get(termos,templist)     
 
-                        termos = str(i)+'*'+str(p)               
-                        combinadostotal[termos] = combinadostotal.get(termos,fatoresmax)
-                except:
-                    continue
+                if primein > 1:            
+                            templist.append(temp)                                    
+                            for key,combis in combinadostotal.items():
+                                if str(prim) not in key:
+                                    combtemplist = []
+                                    i # CONTINUE HERE!!!
+   
             del dic2[prim]        
 
         for i in dic2[prim]:
 
-            if casecounter <= 2:
+            if primein <= 1:
                 pass
 
             else:                
-                for indk, k in enumerate(fatoresmax):
-                        fatoresmax[indk] = (k*i)
-                        if fatoresmax[indk] not in multiplos:
-                            multiplos.append(fatoresmax[indk])
+                #copy from above!
                 
                 for x in combinadostotal:
                     for y in x:
