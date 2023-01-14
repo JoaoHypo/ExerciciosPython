@@ -184,7 +184,7 @@ def FireGoblet(n,p):
                                     combtemplist.append(temp2)
                                     if temp2 not in multiplos:
                                         multiplos.append(temp2)
-                                termotemp = key+'*'+str(prim)+'**'+ str((poten)*'i')
+                                termotemp = str(key)+'*'+str(prim)+'**'+str((poten)*'i')
                                 combinadostotal[termotemp] = combtemplist
                 del dic2[prim]        
 
