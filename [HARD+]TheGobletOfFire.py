@@ -167,25 +167,29 @@ def FireGoblet(n,p):
                     for p in primes:
                         templist = []
 
-                        for j in dic2[p]: #preciso achar uma forma mais inteligente de puxar esse termo                 
-                            temp = i*j          # e junto conferir o countlimit
+                        #itera os fatores dos primos
+                        for j in dic2[p]:                  
+                            temp = i*j          
                             if temp not in multiplos:
                                 multiplos.append(temp)                                                   
                             templist.append(temp)
 
+                        #Armazena os fatores indicando os índices!
                         termos = str(prim)+'**'+str((poten)*'i')+'*'+str(p)               
                         combinadostotal[termos] = templist
+
                     if primein > 1:
-                        #preciso extrair combinados total e criar um temp
+                        #cria um clone com tuplas do dict de todas as combinações feitas até então
                         tempdict = ([(key,combis) for key,combis in combinadostotal.items()])                                      
                         for key,combis in tempdict:
-                            if str(prim) not in key:
-                                combtemplist = []
-                                for val in combis:
+                            if str(prim) not in key: #verifica se primo não está na combinação
+                                combtemplist = []   #Cria lista das iterações
+                                for val in combis: #faz as combinaçõe multiplas do tipo m^x * n^y * i da vez
                                     temp2 = val*i
                                     combtemplist.append(temp2)
                                     if temp2 not in multiplos:
                                         multiplos.append(temp2)
+                                # Armazena todas combinações possiveis , importante para cobrir todos fatores possiveis a cima de 3 primos
                                 termotemp = str(key)+'*'+str(prim)+'**'+str((poten)*'i')
                                 combinadostotal[termotemp] = combtemplist
                 del dic2[prim]        
@@ -194,6 +198,7 @@ def FireGoblet(n,p):
                 pass
             
             else:
+                #Quando sobra o ultimo termo, multiplica este termo por todas combinações que ainda não o utilizaram
                 for i in dic2[prim]:
                     for key,combis in combinadostotal.items():
                         if str(prim) not in key:
@@ -205,7 +210,7 @@ def FireGoblet(n,p):
                                     multiplos.append(temp2)
 
     else:
-        multiplos.append(1)
+        multiplos.append(1) #casos que somente sobra 1 como primo.
 
     return len(multiplos)
 
