@@ -175,8 +175,10 @@ def FireGoblet(n,p):
 
                         termos = str(prim)+'**'+str((poten)*'i')+'*'+str(p)               
                         combinadostotal[termos] = templist
-                    if primein > 1:                                         
-                        for key,combis in combinadostotal.items():
+                    if primein > 1:
+                        #preciso extrair combinados total e criar um temp
+                        tempdict = ([(key,combis) for key,combis in combinadostotal.items()])                                      
+                        for key,combis in tempdict:
                             if str(prim) not in key:
                                 combtemplist = []
                                 for val in combis:
