@@ -215,11 +215,15 @@ def FireGoblet(n,p):
     return len(multiplos)
 
 try:
-    n1 = int(input())
+    n1 = int(input("Digite o número inicial: "))
     n = n1
     while True:
-        p = int(input())
+        p = int(input("\nDigite o primo limite: "))
         n = n*p
-        print(FireGoblet(n,p))
+        print(f"O novo numero n é: {n}")
+        print(f"\nO número de divisores de {n}, \ncompostos apenas por fatores \nde primos menores que {p} é de: ",FireGoblet(n,p),"\n")
 except:
     pass
+
+
+#thanks to this code for making me crazy for 5 days, i think i learned a lot <3
