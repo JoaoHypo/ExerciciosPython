@@ -45,17 +45,20 @@ Somatório do intervalo 14
 Metade do intervalo 3 e 4
 '''
 
-
-
 n1 = int(input())
 n2 = int(input())
 
 print(f"Início do intervalo: {n1}")
 print(f"Fim do intervalo: {n2}")
 
+if n2 < n1:
+    aux = n1
+    n1 = n2
+    n2 = aux
+
 listavalores = []
 soma = 0
-for i in range(n1,n2+1): #todo, patch negatives???
+for i in range(n1,n2+1): 
     listavalores.append(i)
     soma = soma + i
 
@@ -65,11 +68,9 @@ lenlista = len(listavalores)
 
 if lenlista%2 == 0:
     limite = int(lenlista/2)
-    print(f"Somatório do intervalo {listavalores[limite-1]}")
-    print(f"Somatório do intervalo {listavalores[limite]}")
+    print(f"Metade do intervalo {listavalores[limite-1]} e {listavalores[limite]}")
 
 
 else:
     limite = int((lenlista-1)/2)
-    print(f"Somatório do intervalo {listavalores[limite]}")
-
+    print(f"Metade do intervalo {listavalores[limite]}")
