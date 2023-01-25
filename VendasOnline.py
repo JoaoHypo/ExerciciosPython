@@ -70,28 +70,26 @@ TOTAL VENDIDO: R$ 246.95
 controle = None
 cadastro = []
 total = 0
-#Novo hábito, if controle == 0 , 0 é falsy, e while algo é == a, while algo == True:
+
 while controle != '0': 
 
     controle = input()
 
     if controle == '1':
         tl = input().split(',')
-        cadastro.append((tl[0],tl[1],tl[2],tl[3],))
+        cadastro.append([tl[0],tl[1],tl[2],tl[3]])
 
     elif controle == '2':
-        try:
-            pedido = input().split(',')
-            for id,nome,quant,valor in cadastro:
-                if id == pedido[0]:
-                    if quant >= int(pedido[-1]):
-                        quant = quant - int(pedido[-1])
-                        total = total + (valor*float(pedido[-1]))
-                    print(f'VALOR DA COMPRA: R$ {total:.2f}')
-        except:
-            pass
+        pedido = input().split(',')
+        for item in cadastro:
+                if item[0] == pedido[0]:
+                    if int(item[2]) - int(pedido[-1]) >= 0:
+                        item[2] = int(item[2]) - int(pedido[-1])
+                        total = total + (float(item[-1])*int(pedido[-1]))
+                        print(f'VALOR DA COMPRA: R$ {total:.2f}')
 
     elif controle == '3':
         for item in cadastro:
-            print(f'ID: {item[0]},NOME: {item[1]}, QUANTIDADE: {item[2]}, VALOR: {item[3]}')
+            if int(item[2]) >= 1:
+                print(f'ID: {item[0]}, NOME:{item[1]}, QUANTIDADE:{item[2]}, VALOR:{item[3]}')
 print(f'TOTAL VENDIDO: R$ {total:.2f}')
