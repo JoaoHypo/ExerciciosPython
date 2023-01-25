@@ -85,8 +85,9 @@ while controle != '0':
                 if item[0] == pedido[0]:
                     if int(item[2]) - int(pedido[-1]) >= 0:
                         item[2] = int(item[2]) - int(pedido[-1])
-                        total = total + (float(item[-1])*int(pedido[-1]))
-                        print(f'VALOR DA COMPRA: R$ {total:.2f}')
+                        valorpedido = (float(item[-1])*int(pedido[-1]))
+                        total = total + valorpedido
+                        print(f'VALOR DA COMPRA: R$ {valorpedido:.2f}')
 
     elif controle == '3':
         for item in cadastro:
