@@ -82,12 +82,12 @@ while controle != '0':
     elif controle == '2':
         pedido = input().split(',')
         for item in cadastro:
-                if item[0] == pedido[0]:
-                    if int(item[2]) - int(pedido[-1]) >= 0:
-                        item[2] = int(item[2]) - int(pedido[-1])
-                        valorpedido = (float(item[-1])*int(pedido[-1]))
-                        total = total + valorpedido
-                        print(f'VALOR DA COMPRA: R$ {valorpedido:.2f}')
+            if item[0] == pedido[0]:
+                if int(item[2]) - int(pedido[-1]) >= 0:
+                    item[2] = int(item[2]) - int(pedido[-1])
+                    valorpedido = (float(item[-1])*int(pedido[-1]))
+                    total = total + valorpedido
+                    print(f'VALOR DA COMPRA: R$ {valorpedido:.2f}')
 
     elif controle == '3':
         for item in cadastro:
