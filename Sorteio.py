@@ -4,7 +4,6 @@ Todo: Add text
 '''
 
 import random
-random.seed(1024)
 pontos1 = []
 pontos2 = []
 while True:
@@ -21,6 +20,7 @@ while True:
                 jogador2.append(numero)             
                   
     if numero == 0: break   
+    random.seed(1024) #Random Seed tem q ser declarado a cada loop, pq sim kkkk
     while len(sorteados) < 5:
         sorteado = random.randint(1, 20)
         if sorteado not in sorteados:            
