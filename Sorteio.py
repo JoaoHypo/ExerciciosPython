@@ -18,7 +18,8 @@ while True:
             if len(jogador1) < 5:
                 jogador1.append(numero)
             elif len(jogador2) < 5:
-                jogador2.append(numero)               
+                jogador2.append(numero)             
+                  
     if numero == 0: break   
     while len(sorteados) < 5:
         sorteado = random.randint(1, 20)
