@@ -76,11 +76,11 @@ while controle != '0':
     controle = input()
 
     if controle == '1':
-        tl = input().split(',')
+        tl = input().split(', ')
         cadastro.append([tl[0],tl[1],tl[2],tl[3]])
 
     elif controle == '2':
-        pedido = input().split(',')
+        pedido = input().split(', ')
         for item in cadastro:
             if item[0] == pedido[0]:
                 if int(item[2]) - int(pedido[-1]) >= 0:
@@ -92,5 +92,5 @@ while controle != '0':
     elif controle == '3':
         for item in cadastro:
             if int(item[2]) >= 1:
-                print(f'ID: {item[0]}, NOME:{item[1]}, QUANTIDADE:{item[2]}, VALOR:{item[3]}')
+                print(f'ID: {item[0]}, NOME: {item[1]}, QUANTIDADE: {item[2]}, VALOR: {item[3]}')
 print(f'TOTAL VENDIDO: R$ {total:.2f}')
