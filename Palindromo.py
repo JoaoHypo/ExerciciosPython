@@ -22,27 +22,13 @@ reviver
 É palíndromo
 '''
 string = input()
-string = string.split()
-result = []
-
-for palavra in string:
-    if len(palavra)%2 == 0:
-        pass
-    else:
-        meio = int(len(palavra)/2)
-        palavra = palavra[ :meio] + palavra[(meio+1): ]
-    normal = []
-    reverso = []
-    for letra in palavra:
-        normal.append(letra)
-        reverso.insert(0,letra)
-    if normal == reverso:
-        pass
-    else:
-        result.append(0)
-
-if 0 in result:
-    print('Não é palíndromo')
-
-else:
+string = "".join(string.split())
+normal = []
+reverso = []
+for letra in string:
+    normal.append(letra)
+    reverso.insert(0,letra)
+if normal == reverso:
     print('É palíndromo')
+else:
+    print('Não é palíndromo')
