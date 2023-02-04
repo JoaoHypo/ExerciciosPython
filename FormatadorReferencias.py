@@ -1,11 +1,14 @@
 '''
 Formatador de Referências
 
-Faça um programa que lê as informações de um livro (título, autores, ano, cidade e editora) e as formate de acordo com o estilo de referências MLA. Este estilo possui o seguinte padrão:
+Faça um programa que lê as informações de um livro (título, autores, ano, cidade e editora) 
+e as formate de acordo com o estilo de referências MLA. Este estilo possui o seguinte padrão:
 Sobrenome, Nome (primeiro autor) e Nome Sobrenome (demais autores). Título. Cidade: Editora, Ano.
-Todos os autores devem ser lidos em uma única string, separados por vírgula. Caso existam mais que dois autores, os demais autores deverão ser substituídos por “et al”.
+Todos os autores devem ser lidos em uma única string, separados por vírgula. Caso existam mais 
+que dois autores, os demais autores deverão ser substituídos por “et al”.
 Input
-Cinco strings representando título, autores, ano de publicação, cidade e editora do livro, respectivamente.
+Cinco strings representando título, autores, ano de publicação, cidade e editora do livro,
+ respectivamente.
 Output
 Referência formatada.
 
@@ -38,3 +41,26 @@ GEN LTC
 
 Cormen, Thomas. Algoritmos - Teoria e Pratica. N/A: GEN LTC, 2012
 '''
+#Pedindo os inputs
+titulo = input()
+autores = input()
+ano = input()
+cidade = input()
+editor = input()
+
+#Arrumando o primeiro autor
+autores = autores.split(', ')
+primeiroautor = autores[0].split()
+nomeprint = ''
+for i in range(1,len(primeiroautor)-1):
+    nomeprint = nomeprint + primeiroautor[i] + ' '
+nomeprint = nomeprint + primeiroautor[len(primeiroautor)-1] + ', ' + primeiroautor[0]
+
+if len(autores) == 1:
+    print(f'{nomeprint}. {titulo}. {cidade}: {editor}, {ano}')
+
+elif len(autores) == 2:
+    print(f'{nomeprint} e {autores[1]}. {titulo}. {cidade}: {editor}, {ano}')
+else:
+    print(f'{nomeprint} et al. {titulo}. {cidade}: {editor}, {ano}')
+    
