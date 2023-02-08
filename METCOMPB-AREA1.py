@@ -404,7 +404,56 @@ plt.show()
 # Por outro lado, o método de Euler-Cromer é uma variação do método de Euler que utiliza uma atualização diferente para 
 # a velocidade. Ele corrige o erro do método de Euler e, como resultado, preserva a energia total de forma mais exata. 
 # Portanto, a energia total não aumenta monotonicamente com o tempo quando o método de Euler-Cromer é utilizado.
+#%%
+import numpy as np
+import matplotlib.pyplot as plt
 
+def pendulo_euler(theta0, omega0, t, L, m, g):
+    # Calcula as soluções usando o método de Euler
+    N = t.shape[0]
+    theta = np.zeros(N)
+    omega = np.zeros(N)
+    theta[0] = theta0
+    omega[0] = omega0
+    dt = t[1] - t[0]
+    for i in range(1, N):
+        omega[i] = omega[i-1] - (g/L) * np.sin(theta[i-1]) * dt
+        theta[i] = theta[i-1] + omega[i] * dt
+    return theta, omega
+
+def pendulo_euler_cromer(theta0, omega0, t, L, m, g):
+    # Calcula as soluções usando o método de Euler-Cromer
+    N = t.shape[0]
+    theta = np.zeros(N)
+    omega = np.zeros(N)
+    theta[0] = theta0
+    omega[0] = omega0
+    dt = t[1] - t[0]
+    for i in range(1, N):
+        omega[i] = omega[i-1] - (g/L) * np.sin(theta[i-1]) * dt
+        theta[i] = theta[i-1] + omega[i] * dt
+        omega[i] = omega[i] - (g/L) * np.sin(theta[i]) * dt
+    return theta, omega
+
+# Define os parâmetros do problema
+L = 1
+m = 1
+g = 9.8
+t = np.linspace(0, 10, 1000)
+theta0 = 0.1
+omega0 = 0
+
+# Calcula as soluções usando os métodos de Euler e Euler-Cromer
+theta_euler, omega_euler = pendulo_euler(theta0, omega0, t, L, m, g)
+theta_ec, omega_ec = pendulo_euler_cromer(theta0, omega0, t, L, m, g)
+
+# Plota as soluções
+plt.plot(t, theta_euler, label="Euler")
+plt.plot(t, theta_ec, label="Euler-Cromer")
+plt.xlabel("Tempo (s)")
+plt.ylabel("Ángulo (rad)")
+plt.legend()
+plt.show()
 
 
 
