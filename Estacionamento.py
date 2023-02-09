@@ -56,11 +56,11 @@ while True:
     print('(b) Saída de Carro: ')
     print('(c) Listar Carros: ')
     print('(d) Fechar Estacionamento: ')
-    print('(f) Terminar Programa: ')
+    print('(e) Terminar Programa: ')
     #Transformando em caixa alta para facilitar verificação, logo vai aceitar em caixa baixa e alta
     operacao = input('Digite a operação: ').upper()
 
-    if operacao == 'F':
+    if operacao == 'E':
         print('ENCERRANDO O PROGRAMA...')
         break
     #Checando se a opção existe
@@ -91,12 +91,13 @@ while True:
         print('Saída de carro'.center(80,'-'))
         while True:
             placacarro = input('Digite a placa do carro: ')
-            if placacarro not in estacionados.keys():
-                print('Carro não encontrado, digite a placa correta')
-                continue
-            elif placacarro in historico.keys():
+
+            if placacarro in historico.keys():
                  print('Este carro já saiu do estacionamento')
                  continue
+            elif placacarro not in estacionados.keys():
+                print('Carro não encontrado, digite a placa correta')
+                continue
 
             horatxt = input('Digite a hora(HH:MM): ')
             hora = horatxt.split(':')
@@ -105,11 +106,12 @@ while True:
             
             print(f'PLACA: {placacarro}')
             print(f'ENTRADA: {estacionados[placacarro][0]} - SAIDA: {horatxt} = {min} minutos')
-            print(f'TOTAL A PAGAR: R${min*tarifa:.2f}')
+            print(f'TOTAL A PAGAR: R$ {min*tarifa:.2f}')
 
             historico[placacarro] = [estacionados[placacarro][0], horatxt, min]
             saldo =  saldo + min*tarifa
             estacionados.pop(placacarro)
+            break
 
     #Criando opção (c):
     elif operacao == 'C':
@@ -119,8 +121,8 @@ while True:
         for k,v in estacionados.items():
             print(f'{k}\t{v[0]}')
 
-    #Criando opção (e):
-    elif operacao == 'E':
+    #Criando opção (d):
+    elif operacao == 'D':
         print('Fechar estacionamento'.center(80,'-'))
         if len(estacionados) > 0:
             print('Não posso fechar, pois ainda tem carros no estacionamento')
@@ -129,7 +131,7 @@ while True:
             print(f'Foram arrecadados R${saldo:.2f}')
             
             mediamin = 0
-            for val in historico:
+            for val in historico.values():
                 mediamin = mediamin + val[2]
 
             print(f'Os clientes ficaram em média {mediamin/len(historico):.2f} minutos')
