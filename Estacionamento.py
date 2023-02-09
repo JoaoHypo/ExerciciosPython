@@ -43,7 +43,9 @@ programa.
 
 #Criando as opções
 options = ['A','B','C','D']
-Dados = dict()
+estacionados = dict()
+historico = dict()
+tarifa = 0.08
 
 #Abrindo loop do programa
 while True:
@@ -65,19 +67,35 @@ while True:
     if operacao == 'A':
         while True:
             placacarro = input('Digite a placa do carro: ')
-            if placacarro in Dados.keys():
+            if placacarro in estacionados.keys():
                 print('Carro já cadastrado, digite outra placa')
                 continue
-            hora = input('Digite a hora(HH:MM): ').split(':')
+            horatxt = input('Digite a hora(HH:MM): ')
+            hora = horatxt.split(':')
             hora = int(hora[0])*60 + int(hora[1])
-            Dados[placacarro] = hora
-            print(Dados)
+            estacionados[placacarro] = [horatxt,hora] 
+            print(f'PLACA\tHORA ENTRADA\n{placacarro}\t{hora}')
+            
             break
 
     #Criando opção (b):
     elif operacao == 'B':
-        pass
-
+        while True:
+            placacarro = input('Digite a placa do carro: ')
+            if placacarro not in estacionados.keys():
+                print('Carro não encontrado, digite a placa correta')
+                continue
+            elif placacarro in historico.keys():
+                 print('Este carro já saiu do estacionamento')
+                 continue
+            hora1 = input('Digite a hora(HH:MM): ')
+            hora = horatxt.split(':')
+            hora = int(hora[0])*60 + int(hora[1])
+            taxa = (hora - estacionados[placacarro][1]) * tarifa
+            print(f'PLACA: {placacarro}\nENTRADA: {estacionados[placacarro][0]} - SAIDA: {hora1}')
+            print(f'TOTAL A PAGAR: R${taxa:.2f}')
+            historico[placacarro] = [hora1,hora]
+            estacionados.pop(placacarro)
 
     #Criando opção (c):
     elif operacao == 'C':
