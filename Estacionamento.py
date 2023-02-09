@@ -41,3 +41,32 @@ programa.
 
 '''
 
+#Criando as opções
+options = ['A','B','C','D']
+
+#Abrindo loop do programa
+while True:
+
+    print('ESTACIONAMENTO'.center(80,'-'))
+    print('(a) Entrada de Carro: ')
+    print('(b) Saída de Carro: ')
+    print('(c) Listar Carros: ')
+    print('(d) Fechar Estacionamento: ')
+    #Transformando em caixa alta para facilitar verificação, logo vai aceitar em caixa baixa e alta
+    operacao = input('Digite a operação: ').upper()
+    
+    #Checando se a opção existe
+    if operacao not in options:
+        print('\nOpção inválida, tente novamente.')
+        continue
+    
+    #Criando opção (a):
+
+
+
+
+
+
+
+    
+    break
