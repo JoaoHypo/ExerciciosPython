@@ -46,6 +46,7 @@ options = ['A','B','C','D']
 estacionados = dict()
 historico = dict()
 tarifa = 0.08
+saldo = 0
 
 #Abrindo loop do programa
 while True:
@@ -75,11 +76,12 @@ while True:
             if placacarro in estacionados.keys():
                 print('Carro já cadastrado, digite outra placa')
                 continue
+
             horatxt = input('Digite a hora(HH:MM): ')
             hora = horatxt.split(':')
             hora = (int(hora[0])*60) + int(hora[1])
-            print(hora)
             estacionados[placacarro] = [horatxt,hora] 
+
             print(f'PLACA\tHORA ENTRADA\n{placacarro}\t{horatxt}')
             
             break
@@ -95,26 +97,42 @@ while True:
             elif placacarro in historico.keys():
                  print('Este carro já saiu do estacionamento')
                  continue
+
             horatxt = input('Digite a hora(HH:MM): ')
             hora = horatxt.split(':')
             hora = (int(hora[0]))*60 + int(hora[1])
-            print(hora)
-            taxa = (hora - estacionados[placacarro][1])
-            print(taxa)
-            print(f'PLACA: {placacarro}\nENTRADA: {estacionados[placacarro][0]} - SAIDA: {horatxt} = {taxa} minutos')
-            print(f'TOTAL A PAGAR: R${taxa*tarifa:.2f}')
-            historico[placacarro] = [estacionados[placacarro][0], horatxt, taxa]
+            min = (hora - estacionados[placacarro][1])
+            
+            print(f'PLACA: {placacarro}')
+            print(f'ENTRADA: {estacionados[placacarro][0]} - SAIDA: {horatxt} = {min} minutos')
+            print(f'TOTAL A PAGAR: R${min*tarifa:.2f}')
+
+            historico[placacarro] = [estacionados[placacarro][0], horatxt, min]
+            saldo =  saldo + min*tarifa
             estacionados.pop(placacarro)
 
     #Criando opção (c):
     elif operacao == 'C':
         print(' Listar carros'.center(80,'-'))
+
         print('PLACA\tHORA ENTRADA')
         for k,v in estacionados.items():
             print(f'{k}\t{v[0]}')
 
-
-    #Criando opção (c):
-    elif operacao == 'C':
+    #Criando opção (e):
+    elif operacao == 'E':
         print('Fechar estacionamento'.center(80,'-'))
-        pass
+        if len(estacionados) > 0:
+            print('Não posso fechar, pois ainda tem carros no estacionamento')
+        else:
+            print('Finalizando a operação do estacionamento')
+            print(f'Foram arrecadados R${saldo:.2f}')
+            
+            mediamin = 0
+            for val in historico:
+                mediamin = mediamin + val[2]
+
+            print(f'Os clientes ficaram em média {mediamin/len(historico):.2f} minutos')
+            
+            
+
