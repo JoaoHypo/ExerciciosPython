@@ -109,7 +109,9 @@ while True:
     #Criando opção (c):
     elif operacao == 'C':
         print(' Listar carros'.center(80,'-'))
-        pass
+        print('PLACA\tHORA ENTRADA')
+        for k,v in estacionados.items():
+            print(f'{k}\t{v[0]}')
 
 
     #Criando opção (c):
