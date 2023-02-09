@@ -43,6 +43,7 @@ programa.
 
 #Criando as opções
 options = ['A','B','C','D']
+Dados = dict()
 
 #Abrindo loop do programa
 while True:
@@ -57,16 +58,32 @@ while True:
     
     #Checando se a opção existe
     if operacao not in options:
-        print('\nOpção inválida, tente novamente.')
+        print('\nOpção inválida, tente novamente.\n')
         continue
     
     #Criando opção (a):
+    if operacao == 'A':
+        while True:
+            placacarro = input('Digite a placa do carro: ')
+            if placacarro in Dados.keys():
+                print('Carro já cadastrado, digite outra placa')
+                continue
+            hora = input('Digite a hora(HH:MM): ').split(':')
+            hora = int(hora[0])*60 + int(hora[1])
+            Dados[placacarro] = hora
+            print(Dados)
+            break
+
+    #Criando opção (b):
+    elif operacao == 'B':
+        pass
 
 
+    #Criando opção (c):
+    elif operacao == 'C':
+        pass
 
 
-
-
-
-    
-    break
+    #Criando opção (c):
+    elif operacao == 'C':
+        pass
