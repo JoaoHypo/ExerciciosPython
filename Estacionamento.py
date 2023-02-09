@@ -55,9 +55,13 @@ while True:
     print('(b) Saída de Carro: ')
     print('(c) Listar Carros: ')
     print('(d) Fechar Estacionamento: ')
+    print('(f) Terminar Programa: ')
     #Transformando em caixa alta para facilitar verificação, logo vai aceitar em caixa baixa e alta
     operacao = input('Digite a operação: ').upper()
-    
+
+    if operacao == 'F':
+        print('ENCERRANDO O PROGRAMA...')
+        break
     #Checando se a opção existe
     if operacao not in options:
         print('\nOpção inválida, tente novamente.\n')
@@ -65,6 +69,7 @@ while True:
     
     #Criando opção (a):
     if operacao == 'A':
+        print('Entrada de carro'.center(80,'-'))
         while True:
             placacarro = input('Digite a placa do carro: ')
             if placacarro in estacionados.keys():
@@ -72,14 +77,16 @@ while True:
                 continue
             horatxt = input('Digite a hora(HH:MM): ')
             hora = horatxt.split(':')
-            hora = int(hora[0])*60 + int(hora[1])
+            hora = (int(hora[0])*60) + int(hora[1])
+            print(hora)
             estacionados[placacarro] = [horatxt,hora] 
-            print(f'PLACA\tHORA ENTRADA\n{placacarro}\t{hora}')
+            print(f'PLACA\tHORA ENTRADA\n{placacarro}\t{horatxt}')
             
             break
 
     #Criando opção (b):
     elif operacao == 'B':
+        print('Saída de carro'.center(80,'-'))
         while True:
             placacarro = input('Digite a placa do carro: ')
             if placacarro not in estacionados.keys():
@@ -88,20 +95,24 @@ while True:
             elif placacarro in historico.keys():
                  print('Este carro já saiu do estacionamento')
                  continue
-            hora1 = input('Digite a hora(HH:MM): ')
+            horatxt = input('Digite a hora(HH:MM): ')
             hora = horatxt.split(':')
-            hora = int(hora[0])*60 + int(hora[1])
-            taxa = (hora - estacionados[placacarro][1]) * tarifa
-            print(f'PLACA: {placacarro}\nENTRADA: {estacionados[placacarro][0]} - SAIDA: {hora1}')
-            print(f'TOTAL A PAGAR: R${taxa:.2f}')
-            historico[placacarro] = [hora1,hora]
+            hora = (int(hora[0]))*60 + int(hora[1])
+            print(hora)
+            taxa = (hora - estacionados[placacarro][1])
+            print(taxa)
+            print(f'PLACA: {placacarro}\nENTRADA: {estacionados[placacarro][0]} - SAIDA: {horatxt} = {taxa} minutos')
+            print(f'TOTAL A PAGAR: R${taxa*tarifa:.2f}')
+            historico[placacarro] = [estacionados[placacarro][0], horatxt, taxa]
             estacionados.pop(placacarro)
 
     #Criando opção (c):
     elif operacao == 'C':
+        print(' Listar carros'.center(80,'-'))
         pass
 
 
     #Criando opção (c):
     elif operacao == 'C':
+        print('Fechar estacionamento'.center(80,'-'))
         pass
