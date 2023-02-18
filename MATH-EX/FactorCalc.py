@@ -41,4 +41,4 @@ elif nX2 > 1:
         print(f'\nImpossible to factor with integer factors only the expression: {nX2:.0f}x² + {nX:.0f}x + {nC:.0f}')
 
 
-    pass
+#Todo? add more cases
