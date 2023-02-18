@@ -33,8 +33,8 @@ elif nX2 > 1:
         valor2 = nX2AUX/valor
         print(f'\n{valor:^10.2f}\t{valor2:^10.2f}\t{valor2 + valor:^10.2f}')
         if valor2 + valor == nX:
-            print(f'\nThe factoring for x² + {nX:.0f}x + {nC:.0f} is: ')
-            print(f'(x + {valor2:.0f}) * (x + {valor:.0f})\n')
+            print(f'\nThe factoring for {nX2:.0f}x² + {nX:.0f}x + {nC:.0f} is: ')
+            print(f'(x + {valor2:.0f}) * (x + {valor:.0f})\n'.center(30))
             find = True
             break
     if find == False:
