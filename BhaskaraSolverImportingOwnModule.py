@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Resolve uma equação de 2o. grau, do tipo:
 # a*x**2 +b*x + c = 0 
 # encontrando suas raízes.
