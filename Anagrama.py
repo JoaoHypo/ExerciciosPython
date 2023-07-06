@@ -16,8 +16,9 @@ for letra in string1:
     else:
         string1fix = string1fix + letra
 
-#Esse bloco inteiro é pra conseidera japão igual a japao, 
-# sem ele o programa identificaria como diferentes essas strings
+#Esse bloco inteiro é pra conseiderar japão igual a japao, 
+# sem ele o programa identificaria como diferentes essas strings 
+# o que não faz sentido dada a comparação só considerar as letras em acentuação
 string2fix =''
 for letra in string2:
     if letra in especiais:
